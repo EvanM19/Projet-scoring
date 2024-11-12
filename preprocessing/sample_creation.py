@@ -8,9 +8,8 @@ oot_sample = excel_data['oot'].sample(frac=0.1, random_state=42)
 
 train, test = train_test_split(data_sample, test_size=0.25, random_state=42)
 
-print("Taille de l'échantillon data (10%) :", data_sample.shape)
-print("Taille de l'échantillon OOT (10%) :", oot_sample.shape)
-print("Taille de l'ensemble d'entraînement :", train.shape)
-print("Taille de l'ensemble de test :", test.shape)
+with pd.ExcelWriter('data/samples.xlsx') as writer:
+    train.to_excel(writer, sheet_name='train', index=False)
+    test.to_excel(writer, sheet_name='test', index=False)
+    oot_sample.to_excel(writer, sheet_name='oot', index=False)
 
-# Vérifier le taux de défault ! 
